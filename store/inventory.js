@@ -1,15 +1,15 @@
 export const state = () => ({
-  po: 0
+  gold: 0
 })
 
 export const mutations = {
-  MUTATE_UPDATE_PO (state, value) {
-    state.po += value
+  MUTATE_UPDATE_GOLD (state, value) {
+    state.gold += value
   }
 }
 
 export const actions = {
-  UPDATE_ADD_PO (store, value) {
-    store.commit('MUTATE_UPDATE_PO', value)
+  UPDATE_ADD_GOLD (store, value) {
+    store.commit('MUTATE_UPDATE_GOLD', value)
   }
 }
