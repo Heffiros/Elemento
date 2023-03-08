@@ -1,6 +1,8 @@
 <template>
   <div>
-    <span>{{ gold }}</span>
+    <v-card class="logo py-4 d-flex justify-center">
+      <span>{{ gold }}</span>
+    </v-card>
   </div>
 </template>
 
