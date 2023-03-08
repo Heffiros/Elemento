@@ -58,7 +58,7 @@ export default {
       items: [
         {
           icon: 'mdi-bag-personal',
-          title: 'Welcome',
+          title: 'Play',
           to: '/'
         }
       ],
