@@ -1,12 +1,18 @@
 <template>
   <div>
     <v-card width="400" class="flex">
-      <v-card-item>
-        <v-card-title>Population</v-card-title>
-      </v-card-item>
-
+      <v-card-title>Population</v-card-title>
       <v-card-text>
         <div>current population {{ currentPopulation }} / {{ maxPopulation }}</div>
+        <v-col>
+          <v-btn
+            color="secondary"
+            :disabled="canBuy"
+            @click="addPopulation"
+          >
+            <v-icon>mdi-account-plus</v-icon>
+          </v-btn>
+        </v-col>
       </v-card-text>
     </v-card>
   </div>
@@ -14,7 +20,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import timerConfig from '~/config/timerConfig'
 import valueConfig from '~/config/valueConfig'
 
 export default {
@@ -23,12 +28,20 @@ export default {
     ...mapState({
       currentPopulation: state => state.people.currentPopulation,
       maxPopulation: state => state.people.maxPopulation
-    })
+    }),
+    canBuy () {
+      if (!this.$store.getters['people/isMaxPopulationReached'] && this.$store.getters['inventory/canMakeTrade'](10)) {
+        return false
+      } else {
+        return true
+      }
+    }
   },
-  mounted () {
-    setInterval(() => {
-      this.$store.dispatch('inventory/UPDATE_ADD_GOLD', valueConfig.goldBaseValue)
-    }, timerConfig.goldBaseInterval)
+  methods: {
+    addPopulation () {
+      this.$store.dispatch('inventory/UPDATE_ADD_GOLD', -valueConfig.peoplePrice)
+      this.$store.dispatch('people/INCREASE_CURRENT_POPULATION', 1)
+    }
   }
 }
 </script>
