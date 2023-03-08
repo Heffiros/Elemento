@@ -1,7 +1,10 @@
 <template>
   <div>
-    <v-card class="logo py-4 d-flex justify-center">
-      <span>{{ gold }}</span>
+    <v-card class="py-4 d-flex justify-center" color="#fab319">
+      <div>
+        <v-icon>mdi-gold</v-icon>
+        <span class="gold">{{ gold }}</span>
+      </div>
     </v-card>
   </div>
 </template>
@@ -25,3 +28,9 @@ export default {
   }
 }
 </script>
+<style>
+  .gold {
+    margin-left: 12px
+  }
+
+</style>
